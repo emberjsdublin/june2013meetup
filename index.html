@@ -43,30 +43,11 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
-
     <div class="hero-unit">
       <h1>Ember.js Dublin Samples</h1>
       <h2>@gavinjoyce</h2>
 
     </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="bootstrap">
-    {{view Bootstrap.ProgressBar isStriped=true isAnimated=true progressBinding="progress"}}
-    {{view Bootstrap.AlertMessage typeBinding="type" messageBinding="message"}}
-
-    <button {{action decreaseProgress}} type="button" class="btn btn-mini btn-warning">- 1</button>
-    <button {{action increaseProgress}} type="button" class="btn btn-mini btn-success">+ 1</button>
-
-    {{#if isOdd}}
-      {{view Bootstrap.Label type="important" content="Odd"}}
-    {{else}}
-      {{view Bootstrap.Label type="inverse" content="Even"}}
-    {{/if}}
-
-    <hr />
-
-    https://github.com/emberjs-addons/ember-bootstrap
   </script>
 
   <script type="text/x-handlebars" data-template-name="bindings">
@@ -87,6 +68,25 @@
   </script>
 
 
+  <script type="text/x-handlebars" data-template-name="bootstrap">
+    {{view Bootstrap.ProgressBar isStriped=true isAnimated=true progressBinding="progress"}}
+    {{view Bootstrap.AlertMessage typeBinding="type" messageBinding="message"}}
+
+    <button {{action decreaseProgress}} type="button" class="btn btn-mini btn-warning">- 1</button>
+    <button {{action increaseProgress}} type="button" class="btn btn-mini btn-success">+ 1</button>
+
+    {{#if isOdd}}
+      {{view Bootstrap.Label type="important" content="Odd"}}
+    {{else}}
+      {{view Bootstrap.Label type="inverse" content="Even"}}
+    {{/if}}
+
+    <hr />
+
+    https://github.com/emberjs-addons/ember-bootstrap
+  </script>
+
+
   <script type="text/x-handlebars" data-template-name="users">
     <h2>There are {{length}} users</h2>
     <button {{action createUser}}>Create User</button>
@@ -94,8 +94,8 @@
     {{#each controller}}
       <img {{bindAttr src="avatar"}} width="100" class="avatar-big" {{bindAttr title="username"}}/>
     {{/each}}
-
   </script>
+
 
   <script type="text/x-handlebars" data-template-name="tweets">
     <button {{action createTweet}}>Create Tweet</button>
@@ -107,16 +107,18 @@
     </ul>
   </script>
 
+
   <script type="text/x-handlebars" data-template-name='_tweet'>
     <li class="tweet">
       <span class="avatar">
         <img {{bindAttr src="user.avatar"}} class="avatar-small" />
       </span>
       <span class="message">
-        <strong>{{user.username}}</strong> ({{timeAgo}}): {{message}}
+        <strong>{{user.username}}</strong> ({{timeAgo}}): <span class="message">{{message}}</span>
       </span>
     </li>
   </script>
+
 
   <script type="text/x-handlebars" data-template-name="tweetList">
     <h2>There are {{length}} tweets</h2>
@@ -128,6 +130,7 @@
 
     <hr />
   </script>
+
 
   <script src="js/libs/jquery-1.9.1.js"></script>
   <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>

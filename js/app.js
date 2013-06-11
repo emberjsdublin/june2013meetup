@@ -122,4 +122,4 @@ App.Tweet = DS.Model.extend({
 });
 
 App.Store = DS.Store.extend({ revision: 13, adapter: 'App.LSAdapter' });
-App.LSAdapter = DS.LSAdapter.extend({ namespace: 'Ember.js Dublin' });
+App.LSAdapter = DS.LSAdapter.extend({ namespace: 'Ember.js Dublin 1' });
