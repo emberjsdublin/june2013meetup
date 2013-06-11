@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Starter Kit</title>
+<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+<style type="text/css">
+  body { padding-top: 60px; padding-bottom: 40px; }
+  a.active { color: white !important;}
+  .ember-list-view { overflow: auto; position: relative; background-color: #eee; }
+  .ember-list-item-view { position: absolute; }
+
+  .tweet { width: 500px; border-bottom: 1px solid #ddd; }
+  img.avatar-big { border: 1px solid black; margin: 10px; width: 100px; height: 100px;}
+  img.avatar-small { border: 1px solid black; margin: 4px; width: 50px; height: 50px;}
+</style>
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Ember.js Samples</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+
+            </p>
+            <ul class="nav">
+              <li>{{#linkTo index}}Index{{/linkTo}}</li>
+              <li>{{#linkTo bindings}}Bindings{{/linkTo}}</li>
+              <li>{{#linkTo bootstrap}}Bootstrap{{/linkTo}}</li>
+              <li>{{#linkTo users}}Users{{/linkTo}}</li>
+              <li>{{#linkTo tweets}}Tweets{{/linkTo}}</li>
+              <li>{{#linkTo tweetList}}Tweet List{{/linkTo}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        {{outlet}}
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+
+    <div class="hero-unit">
+      <h1>Ember.js Dublin Samples</h1>
+      <h2>@gavinjoyce</h2>
+
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="bootstrap">
+    {{view Bootstrap.ProgressBar isStriped=true isAnimated=true progressBinding="progress"}}
+    {{view Bootstrap.AlertMessage typeBinding="type" messageBinding="message"}}
+
+    <button {{action decreaseProgress}} type="button" class="btn btn-mini btn-warning">- 1</button>
+    <button {{action increaseProgress}} type="button" class="btn btn-mini btn-success">+ 1</button>
+
+    {{#if isOdd}}
+      {{view Bootstrap.Label type="important" content="Odd"}}
+    {{else}}
+      {{view Bootstrap.Label type="inverse" content="Even"}}
+    {{/if}}
+
+    <hr />
+
+    https://github.com/emberjs-addons/ember-bootstrap
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="bindings">
+    <h1>value: [{{name}}]</h1>
+
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+    {{view Ember.TextField valueBinding="name" }}
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="users">
+    <h2>There are {{length}} users</h2>
+    <button {{action createUser}}>Create User</button>
+    <hr />
+    {{#each controller}}
+      <img {{bindAttr src="avatar"}} width="100" class="avatar-big" {{bindAttr title="username"}}/>
+    {{/each}}
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="tweets">
+    <button {{action createTweet}}>Create Tweet</button>
+
+    <ul class="tweets">
+      {{#each controller}}
+        {{partial "tweet"}}
+      {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name='_tweet'>
+    <li class="tweet">
+      <span class="avatar">
+        <img {{bindAttr src="user.avatar"}} class="avatar-small" />
+      </span>
+      <span class="message">
+        <strong>{{user.username}}</strong> ({{timeAgo}}): {{message}}
+      </span>
+    </li>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="tweetList">
+    <h2>There are {{length}} tweets</h2>
+    <button {{action createTweets}}>Create Lots Of Tweet</button>
+
+    {{#collection Ember.ListView contentBinding="controller" height=400 rowHeight=60 width=700}}
+      {{partial "tweet"}}
+    {{/collection}}
+
+    <hr />
+  </script>
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
+  <script src="js/libs/ember-1.0.0-rc.5.js"></script>
+  <script src="js/libs/ember-data-latest.js"></script>
+  <script src="js/libs/localstorage_adapter.js"></script>
+  <script src="js/libs/ember-bootstrap.js"></script>
+  <script src="js/libs/list-view.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
