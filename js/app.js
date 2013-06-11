@@ -6,6 +6,11 @@ App.Router.map(function() {
   this.route('users');
   this.route('tweets');
   this.route('tweetList');
+  this.resource('parent', function() {
+    this.resource('child', function() {
+      this.resource('grandchild');
+    });
+  });
 });
 
 App.BootstrapController = Ember.Controller.extend({
@@ -117,6 +122,7 @@ App.Tweet = DS.Model.extend({
     }
   },
   randomText: function() {
+
     return Math.random().toString(36).substring(7);
   }
 });

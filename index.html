@@ -129,8 +129,36 @@
     {{/collection}}
 
     <hr />
+
+    https://github.com/emberjs/list-view
   </script>
 
+  <script type="text/x-handlebars" data-template-name="parent">
+    <h2>parent</h2>
+
+    <hr />
+    {{outlet}}
+    <hr />
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="child">
+    <h3>child</h3>
+
+    <hr />
+    {{outlet}}
+    <hr />
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="grandchild">
+    <h4>grandchild</h4>
+
+    {{view Ember.TextField valueBinding="name" }}
+
+
+    <hr />
+    https://github.com/tildeio/ember-extension<br />
+    http://www.kaspertidemann.com/how-to-try-out-the-ember-inspector-in-google-chrome/
+  </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
   <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
